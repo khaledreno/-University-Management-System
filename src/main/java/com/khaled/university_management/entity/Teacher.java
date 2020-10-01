@@ -41,6 +41,8 @@ public class Teacher {
             inverseJoinColumns=@JoinColumn(name="course_id"))
     private List<Course> course;
 
+    public Teacher() {
+    }
 
     public int getId() {
         return id;

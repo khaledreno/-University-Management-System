@@ -41,7 +41,15 @@ public class Student {
     )
     private List<Course> courses;
 
+    public Student() {
+    }
 
+    public Student(String first_name, String last_name, int number_active_subjects, String email) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.number_active_subjects = number_active_subjects;
+        this.email = email;
+    }
 
     public int getId() {
         return id;
