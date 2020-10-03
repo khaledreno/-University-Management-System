@@ -2,7 +2,9 @@ package com.khaled.university_management.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -30,7 +32,7 @@ public class Teacher {
     //Relation between teacher and students
     @OneToMany(mappedBy = "instructor"
     ,cascade = {CascadeType.DETACH , CascadeType.MERGE , CascadeType.REFRESH , CascadeType.PERSIST})
-    private List<Student> std;
+    private Set<Student> std = new HashSet<>();
 
     //Relation between teachers and courses
     @ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -39,9 +41,16 @@ public class Teacher {
             name="instructor_course",
             joinColumns=@JoinColumn(name="instructor_id"),
             inverseJoinColumns=@JoinColumn(name="course_id"))
-    private List<Course> course;
+    private Set<Course> course = new HashSet<>();
 
     public Teacher() {
+    }
+
+    public Teacher(String first_name, String last_name, int number_active_subjects, String title) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.number_active_subjects = number_active_subjects;
+        this.title = title;
     }
 
     public int getId() {
@@ -84,19 +93,19 @@ public class Teacher {
         this.title = title;
     }
 
-    public List<Student> getStd() {
+    public Set<Student> getStd() {
         return std;
     }
 
-    public void setStd(List<Student> std) {
+    public void setStd(Set<Student> std) {
         this.std = std;
     }
 
-    public List<Course> getCourse() {
+    public Set<Course> getCourse() {
         return course;
     }
 
-    public void setCourse(List<Course> course) {
+    public void setCourse(Set<Course> course) {
         this.course = course;
     }
 }

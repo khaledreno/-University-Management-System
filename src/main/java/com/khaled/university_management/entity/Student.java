@@ -1,7 +1,9 @@
 package com.khaled.university_management.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -39,7 +41,7 @@ public class Student {
             joinColumns=@JoinColumn(name="student_id"),
             inverseJoinColumns=@JoinColumn(name="course_id")
     )
-    private List<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 
     public Student() {
     }
@@ -99,11 +101,11 @@ public class Student {
         this.instructor = instructor;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(Set<Course> courses) {
         this.courses = courses;
     }
 }

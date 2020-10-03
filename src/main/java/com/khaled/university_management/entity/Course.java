@@ -2,7 +2,9 @@ package com.khaled.university_management.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "course")
@@ -26,7 +28,7 @@ public class Course {
             name="instructor_course",
             joinColumns=@JoinColumn(name="course_id"),
             inverseJoinColumns=@JoinColumn(name="instructor_id"))
-    private List<Teacher> teacher;
+    private Set<Teacher> teacher = new HashSet<>();
 
 
     //Relation between students and courses
@@ -37,7 +39,7 @@ public class Course {
             name="student_course",
             joinColumns=@JoinColumn(name="course_id"),
             inverseJoinColumns=@JoinColumn(name="student_id"))
-    private List<Student> students;
+    private Set<Student> students = new HashSet<>();
 
     public Course() {
     }
@@ -71,37 +73,45 @@ public class Course {
         this.course_hours = course_hours;
     }
 
-    public List<Student> getStudents() {
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public Set<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(Set<Student> students) {
         this.students = students;
     }
 
-    public List<Teacher> getTeacher() {
+    public Set<Teacher> getTeacher() {
         return teacher;
     }
 
-    public void setTeacher(List<Teacher> teacher) {
+    public void setTeacher(Set<Teacher> teacher) {
         this.teacher = teacher;
     }
 
-    public void addStudent(Student theStudent) {
-
-        if (students == null) {
-            students = new ArrayList<>();
-        }
-
-        students.add(theStudent);
-    }
-
-    public void addInstructor(Teacher theTeacher) {
-
-        if (teacher == null) {
-            teacher = new ArrayList<>();
-        }
-
-        teacher.add(theTeacher);
-    }
+//    public void addStudent(Student theStudent) {
+//
+//        if (students == null) {
+//            students = new HashSet<>();
+//        }
+//
+//        students.add(theStudent);
+//    }
+//
+//    public void addInstructor(Teacher theTeacher) {
+//
+//        if (teacher == null) {
+//            teacher = new HashSet<>();
+//        }
+//
+//        teacher.add(theTeacher);
+//    }
 }
