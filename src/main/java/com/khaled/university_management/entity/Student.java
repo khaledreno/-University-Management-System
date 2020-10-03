@@ -48,7 +48,7 @@ public class Student {
         this.first_name = first_name;
         this.last_name = last_name;
         this.number_active_subjects = number_active_subjects;
-        this.email = email;
+        this.email = email+"@uni.com";
     }
 
     public int getId() {
