@@ -2,6 +2,10 @@ package com.khaled.university_management.service;
 
 import com.khaled.university_management.dao.StudentDAO;
 import com.khaled.university_management.entity.Student;
+import com.khaled.university_management.entity.Teacher;
+import com.khaled.university_management.exception.GeneralException;
+import com.khaled.university_management.exception.StudentExceptionMessages;
+import com.khaled.university_management.exception.TeacherExceptionMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,12 +15,10 @@ import java.util.Optional;
 
 @Service
 public class StudentService {
-    private StudentDAO studentDAO;
+
 
     @Autowired
-    public StudentService (StudentDAO studentDAO){
-        this.studentDAO = studentDAO;
-    }
+    private StudentDAO studentDAO;
 
     public List<Student> findAllStudents(){
         return studentDAO.findAll();
@@ -27,8 +29,10 @@ public class StudentService {
     }
 
     public Optional<Student> findStudent(@PathVariable int id){
-        if (studentDAO.findById(id) == null){
-            throw new RuntimeException("can't find a student with an id "+id);
+        Student student = studentDAO.findById(id).orElse(null);
+
+        if (student == null){
+            throw new GeneralException(StudentExceptionMessages.CANNOT_FIND_STUDENT);
         }
         else {
             return studentDAO.findById(id);

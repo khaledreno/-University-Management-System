@@ -1,6 +1,7 @@
 package com.khaled.university_management.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,9 +17,11 @@ public class Course {
     private int course_id;
 
     @Column(name="course_name")
+    @NotBlank
     private String course_name;
 
     @Column(name = "course_hours")
+    @NotBlank
     private int course_hours;
 
     //Relation between teachers and courses
@@ -97,21 +100,14 @@ public class Course {
         this.teacher = teacher;
     }
 
-//    public void addStudent(Student theStudent) {
-//
-//        if (students == null) {
-//            students = new HashSet<>();
-//        }
-//
-//        students.add(theStudent);
-//    }
-//
-//    public void addInstructor(Teacher theTeacher) {
-//
-//        if (teacher == null) {
-//            teacher = new HashSet<>();
-//        }
-//
-//        teacher.add(theTeacher);
-//    }
+    @Override
+    public String toString() {
+        return "Course{" +
+                "course_id=" + course_id +
+                ", course_name='" + course_name + '\'' +
+                ", course_hours=" + course_hours +
+                ", teacher=" + teacher +
+                ", students=" + students +
+                '}';
+    }
 }

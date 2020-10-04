@@ -1,6 +1,7 @@
 package com.khaled.university_management.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,15 +17,18 @@ public class Student {
     private int id;
 
     @Column(name = "first_name")
+    @NotBlank
     private String first_name;
 
     @Column(name = "last_name")
+    @NotBlank
     private String last_name;
 
     @Column(name = "number_active_subjects")
     private int number_active_subjects;
 
     @Column(name = "email")
+    @NotBlank
     private String email;
 
     //Relation between teacher and students
@@ -107,5 +111,18 @@ public class Student {
 
     public void setCourses(Set<Course> courses) {
         this.courses = courses;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", number_active_subjects=" + number_active_subjects +
+                ", email='" + email + '\'' +
+                ", instructor=" + instructor +
+                ", courses=" + courses +
+                '}';
     }
 }

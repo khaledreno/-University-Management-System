@@ -63,10 +63,10 @@ public class UniversityManagementApplication implements CommandLineRunner {
 
 
 
-		t1.getCourse().add(c1);
-		c1.getTeacher().add(t1);
-
-		teacherService.AddTeacher(t1);
-		courseService.AddCourse(c1);
+//		t1.getCourse().add(c1);
+//		c1.getTeacher().add(t1);
+//
+//		teacherService.AddTeacher(t1);
+//		courseService.AddCourse(c1);
 	}
 }
